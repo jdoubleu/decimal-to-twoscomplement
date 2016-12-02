@@ -88,14 +88,7 @@ gulp.task('lint:javascript:es6', () => {
         .pipe(eslint.format());
 });
 
-gulp.task('lint:styles:scss', () => {
-	let sasslint = require('gulp-sass-lint');
-	return gulp.src([dirs.assets.src.styles + '/**/*.scss'])
-        .pipe(sasslint())
-        .pipe(sasslint.format());
-});
-
-gulp.task('lint', ["lint:javascript:es6","lint:styles:scss"]);
+gulp.task('lint', ["lint:javascript:es6"]);
 
 // # Watcher tasks
 gulp.task('watch:compile', ['compile'], () => {
@@ -104,7 +97,6 @@ gulp.task('watch:compile', ['compile'], () => {
 });
 
 gulp.task('watch:lint', ['lint'], () => {
-	gulp.watch(dirs.assets.src.styles + '/**/*.scss', ['lint:styles:scss']);
     gulp.watch(dirs.assets.src.scripts + '/**/*.js', ['lint:javascript:es6']);
 });
 
