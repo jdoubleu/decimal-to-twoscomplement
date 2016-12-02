@@ -5,3 +5,40 @@
  */
 
 @import 'layout';
+
+.page-content code {
+	display: inline-block;
+	background-color: rgba(0,0,0,.06);
+	line-height: .9em;
+}
+
+#convert-form {
+	.mdl-textfield {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+#convert-input {
+	padding: 0;
+}
+
+#result-grid {
+
+	.result-headers {
+		font-weight: bold;
+	}
+
+	.mdl-grid {
+		padding: 0;
+
+		.mdl-cell {
+			margin: 0;
+
+			&, span {
+				float: right;
+				text-align: right;
+			}
+		}
+	}
+}
