@@ -1,0 +1,26 @@
+{
+	"name": "ra-web-decimal-to-twoscomplement",
+	"version": "1.0.0",
+	"description": "A microsite to convert decimal numbers to two&#39;s complement.",
+	"main": "index.js",
+	"scripts": {
+		"start": "node_modules/gulp/bin/gulp.js default",
+		"test": "echo \"Only linting:\n\" && node_modules/gulp/bin/gulp.js lint",
+		"postinstall": "node_modules/gulp/bin/gulp.js compile"
+	},
+	"author": "Joshua Westerheide &lt;dev@jdoubleu.de&gt;",
+	"license": "MIT",
+	"devDependencies": {
+		"babel-eslint": "^6.1.2", 
+		"babel-preset-es2015": "^6.13.2",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^3.1.1",
+		"gulp-babel": "^6.1.2",
+		"gulp-eslint": "^3.0.1",
+		"gulp-sass": "^2.3.2",
+		"gulp-sass-lint": "^1.2.0",
+		"gulp-sourcemaps": "^1.6.0",
+		"gulp-uglify": "^2.0.0",
+		"gulp-uglifycss": "^1.0.6"
+	}
+}

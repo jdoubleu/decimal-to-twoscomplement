@@ -1,0 +1,43 @@
+# Project's Sass Lint (https://github.com/sasstools/sass-lint)
+# Configuration File
+
+# Linter Options
+options:
+  cache-config: true
+  merge-default-rules: true
+
+# Rule Configuration
+rules:
+  attribute-quotes: 2
+  bem-depth: 0
+  border-zero: 1
+  brace-style: 2
+  empty-line-between-blocks:
+    - 2
+    -
+      allow-single-line-rulesets: false
+  final-newline:
+    - 1
+    -
+      include: false
+  force-pseudo-nesting: 0
+  force-element-nesting: 0
+  force-attribute-nesting: 0
+  hex-length:
+    - 2
+    -
+      style: long
+  hex-notation: 1
+  indentation:
+    - 2
+    -
+      size: 'tab'
+  no-css-comments: 0
+  no-empty-rulesets: 1
+  url-quotes: 2
+  leading-zero: 0
+  nesting-depth:
+    - 1
+    -
+      max-depth: '5'
+  property-sort-order: 0

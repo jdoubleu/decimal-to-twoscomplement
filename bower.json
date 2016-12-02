@@ -1,0 +1,17 @@
+{
+	"name": "ra-web-decimal-to-twoscomplement",
+	"description": "A microsite to convert decimal numbers to two&#39;s complement.",
+	"main": "index.js",
+	"authors": [
+		"Joshua Westerheide &lt;dev@jdoubleu.de&gt;"
+	],
+	"license": "MIT",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"assets/vendor",
+		"test",
+		"tests"
+	]
+}

@@ -1,0 +1,14 @@
+# .gitignore project scope
+
+## Package Repositories
+vendor/
+node_modules/
+npm-debug.log
+bower_components/
+assets/vendor/
+
+## Project files
+
+### Compiled
+assets/dist/scripts/
+assets/dist/styles/

@@ -1,0 +1,47 @@
+# Project's GitLab CI configuration
+
+# Use the global node.js docker image
+image: node
+
+# Global Vars
+variables:
+  PKG_NAME: "ra-web-decimal-to-twoscomplement"
+
+# Global Caching rules, enabled per-ref caching
+cache:
+  key: "$CI_BUILD_REF_NAME"
+  paths:
+    - node_modules/
+    - assets/vendor/
+
+# First install bower and gulp-cli globally and then
+# install/require all dependencies
+before_script:
+  - npm install -g bower gulp-cli
+  - npm install
+  - bower install --allow-root
+
+stages:
+  - lint
+  - build
+
+lint:all:
+  stage: lint
+  script: gulp lint
+  allow_failure: true
+
+build:all:
+  stage: build
+  only:
+   - master
+  script:
+    - gulp build
+    - find assets/dist/ -name *.map -type f -exec rm -f {} \;
+  artifacts:
+    name: "${PKG_NAME}_${CI_BUILD_REF}"
+    paths:
+      - assets/dist/
+      - assets/vendor/
+      - ./*.html
+      - humans.txt
+      - LICENSE
