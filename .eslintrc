@@ -23,6 +23,7 @@
         "semi": ["error", "always"],
 		"camelcase": ["warn", { "properties": "always" }],
         "comma-dangle": ["error", "never"],
-        "no-cond-assign": ["error", "except-parens"]
+        "no-cond-assign": ["error", "except-parens"],
+		"no-console": "off"
     }
 }
