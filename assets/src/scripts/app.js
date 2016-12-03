@@ -87,22 +87,21 @@
 	const invertBinary = bin => {
 		// Flip all bits
 		let b = bin.split('').map(v => {
-			return v == '1' ? '0' : '1'
+			return v == '1' ? '0' : '1';
 		});
 
-		let i = b.length,
+		let i = b.length - 1,
 			car = 1;
 		// Add +1
-		do {
-			if(car == 1)
-				if(b[i] == '1')
-					b[i] = '0';
-				else {
-					b[i] = '1';
-					car = 0;
-				}
+		while(car == 1 && i >= 0) {
+			if(b[i] == '1')
+				b[i] = '0';
+			else {
+				b[i] = '1';
+				car = 0;
+			}
 			i--;
-		} while(car == 1);
+		}
 
 		return b.join('');
 	};
