@@ -14,6 +14,12 @@
 	const numberPattern = /^(\+|-)?(0|[1-9]+[0-9]*)$/i;
 
 	/**
+	 * Length of the displayed binary numbers (aka byte length)
+	 * @type {number}
+	 */
+	const wordLength = 8;
+
+	/**
 	 * Checks whether the given number is valid
 	 * @param number
 	 * @returns {boolean}
