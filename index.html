@@ -28,31 +28,33 @@
 						<p>
 							Enter a decimal number in the following format: <code>(\+|-)?(0|[1-9]+[0-9]*)</code>
 						</p>
-						<div class="mdl-grid">
-							<div class="mdl-cell mdl-cell--2-col">Input:</div>
-							<div class="mdl-cell mdl-cell--10-col">
-								<form action="#" id="convert-form">
-									<div class="mdl-textfield mdl-js-textfield">
-										<input class="mdl-textfield__input" type="text" pattern="(\+|-)?(0|[1-9]+[0-9]*)" id="convert-input" value="0">
-										<label class="mdl-textfield__label" for="convert-input">Number to convert</label>
-										<span class="mdl-textfield__error">Input is not a valid number!</span>
-									</div>
-								</form>
+						<div id="app">
+							<div class="mdl-grid">
+								<div class="mdl-cell mdl-cell--2-col">Input:</div>
+								<div class="mdl-cell mdl-cell--10-col">
+									<form action="#" id="convert-form">
+										<div class="mdl-textfield mdl-js-textfield">
+											<input class="mdl-textfield__input" type="text" pattern="(\+|-)?(0|[1-9]+[0-9]*)" id="convert-input" v-model="value">
+											<label class="mdl-textfield__label" for="convert-input">Number to convert</label>
+											<span class="mdl-textfield__error">Input is not a valid number!</span>
+										</div>
+									</form>
+								</div>
 							</div>
-						</div>
-						<div class="mdl-grid">
-							<div class="mdl-cell mdl-cell--2-col">Output:</div>
-							<div class="mdl-cell mdl-cell--10-col">
-								<div id="result-grid">
-									<div class="mdl-grid result-headers">
-										<div class="mdl-cell mdc-cell--4-col">binary</div>
-										<div class="mdl-cell mdc-cell--4-col">octal</div>
-										<div class="mdl-cell mdc-cell--4-col">hexadecimal</div>
-									</div>
-									<div class="mdl-grid result-content">
-										<div class="mdl-cell mdc-cell--4-col"><span id="result-binary">0</span></div>
-										<div class="mdl-cell mdc-cell--4-col"><span id="result-octal">0</span></div>
-										<div class="mdl-cell mdc-cell--4-col"><span id="result-hexadecimal">0</span></div>
+							<div class="mdl-grid">
+								<div class="mdl-cell mdl-cell--2-col">Output:</div>
+								<div class="mdl-cell mdl-cell--10-col">
+									<div id="result-grid">
+										<div class="mdl-grid result-headers">
+											<div class="mdl-cell mdc-cell--4-col">binary</div>
+											<div class="mdl-cell mdc-cell--4-col">octal</div>
+											<div class="mdl-cell mdc-cell--4-col">hexadecimal</div>
+										</div>
+										<div class="mdl-grid result-content">
+											<div class="mdl-cell mdc-cell--4-col"><span id="result-binary">{{ result.bin }}</span></div>
+											<div class="mdl-cell mdc-cell--4-col"><span id="result-octal">{{ result.oct }}</span></div>
+											<div class="mdl-cell mdc-cell--4-col"><span id="result-hexadecimal">{{ result.hex }}</span></div>
+										</div>
 									</div>
 								</div>
 							</div>
