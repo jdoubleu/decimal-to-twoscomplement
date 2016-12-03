@@ -24,6 +24,7 @@ before_script:
 stages:
   - lint
   - build
+  - deployment
 
 lint:all:
   stage: lint
@@ -43,5 +44,19 @@ build:all:
       - assets/dist/
       - assets/vendor/
       - ./*.html
-      - humans.txt
-      - LICENSE
+
+deploy:production:
+  stage: deployment
+  environment: production
+  only:
+    - master
+  dependencies:
+    - build:all
+  before_script:
+    - apt-get update >> /dev/null && apt-get install -y rsync git >> /dev/null
+    - 'which ssh-agent || ( apt-get install openssh-client -y >> /dev/null )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$PROD_SSH_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script: rsync -rtvhze ssh . $PROD_SSH_USER@$PROD_HOST:$PROD_PATH --exclude=.git/ --exclude=.gitmodules --exclude=README.md --exclude=.gitlab-ci.yml --exclude=assets/src/ --stats --delete
