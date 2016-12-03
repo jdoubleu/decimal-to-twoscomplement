@@ -113,26 +113,33 @@
 	};
 
 	/**
-	 * Converts a number to two's complement
+	 * Converts a number to two's complement in binary format
 	 * @param number
-	 * @param base
 	 * @returns {String}
+	 * @throws RangeError
 	 */
-	const twosComplement = (number, base = 10) => {
-		let res = number = number.toString(),
-			sign = "+";
+	const twosComplement = (number) => {
+		let res = number.toString(),
+			sign = '+';
 
-		if(["+", "-"].indexOf(number.charAt(0)) !== -1) {
-			sign = number.charAt(0);
-			res = number.substr(1);
+		if(['+', '-'].indexOf(res.charAt(0)) !== -1) {
+			sign = res.charAt(0);
+			res = res.substr(1);
 		}
+
+		if((sign == '+' && res >= Math.pow(2, wordLength - 1)) || (res > Math.pow(2, wordLength - 1)))
+			throw new RangeError('Given number can\'t be represented by current word bit length (' + wordLength + ').');
 
 		res = convertDecimalToBase(parseInt(res), 2);
 
-		if(sign === "-")
+		// Fill up to word length
+		while(wordLength > res.length)
+			res = '0' + res;
+
+		if(sign === '-')
 			res = invertBinary(res);
 
-		return convertDecimalToBase(convertBaseToDecimal(res, 2), base);
+		return res;
 	};
 
 	/**
