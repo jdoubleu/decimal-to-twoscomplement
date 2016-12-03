@@ -210,6 +210,17 @@
 				return this.gettwcs(this.value);
 			}
 		},
+		watch: {
+			error: function() {
+				if(this.error) {
+					this.$el.querySelector('#result-error').MaterialSnackbar.showSnackbar({
+						timeout: 3000,
+						message: this.error
+					});
+					setTimeout(() => this.error = '', 3000);
+				}
+			}
+		},
 		methods: {
 			gettwcs: function(value) {
 				let tc,
