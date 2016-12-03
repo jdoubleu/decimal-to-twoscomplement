@@ -28,16 +28,28 @@
 						<p>
 							Enter a decimal number which should be converted into <a href="https://en.wikipedia.org/wiki/Two's_complement">two's complement</a>
 							in binary, octal and hexadecimal format. The number has to match <code>(\+|-)?(0|[1-9]+[0-9]*)</code>.
+							You may also define a word length (in bits) in the second form.
 						</p>
 						<div id="app">
 							<div class="mdl-grid">
 								<div class="mdl-cell mdl-cell--2-col">Input:</div>
 								<div class="mdl-cell mdl-cell--10-col">
 									<form action="#" id="convert-form">
-										<div class="mdl-textfield mdl-js-textfield">
-											<input class="mdl-textfield__input" type="text" pattern="(\+|-)?(0|[1-9]+[0-9]*)" id="convert-input" v-model="value">
-											<label class="mdl-textfield__label" for="convert-input">Number to convert</label>
-											<span class="mdl-textfield__error">Input is not a valid number!</span>
+										<div class="mdl-grid app-grid">
+											<div class="mdl-cell mdl-cell--10-col">
+												<div class="mdl-textfield mdl-js-textfield">
+													<input class="mdl-textfield__input" type="number" pattern="(\+|-)?(0|[1-9]+[0-9]*)" id="convert-input" v-model="value">
+													<label class="mdl-textfield__label" for="convert-input">Number to convert</label>
+													<span class="mdl-textfield__error">Input is not a valid number!</span>
+												</div>
+											</div>
+											<div class="mdl-cell mdl-cell--2-col" style="padding-left: 0.5em;">
+												<div class="mdl-textfield mdl-js-textfield">
+													<input class="mdl-textfield__input" type="number" pattern="([1-9]+[0-9]*)" id="conver-blength" v-model="blength">
+													<label class="mdl-textfield__label" for="conver-blength">Word length (bits)</label>
+													<span class="mdl-textfield__error">Not valid!</span>
+												</div>
+											</div>
 										</div>
 									</form>
 								</div>
@@ -46,12 +58,12 @@
 								<div class="mdl-cell mdl-cell--2-col">Output:</div>
 								<div class="mdl-cell mdl-cell--10-col">
 									<div id="result-grid">
-										<div class="mdl-grid result-headers">
+										<div class="mdl-grid result-headers app-grid">
 											<div class="mdl-cell mdc-cell--4-col">binary</div>
 											<div class="mdl-cell mdc-cell--4-col">octal</div>
 											<div class="mdl-cell mdc-cell--4-col">hexadecimal</div>
 										</div>
-										<div class="mdl-grid result-content">
+										<div class="mdl-grid result-content app-grid">
 											<div class="mdl-cell mdc-cell--4-col"><span id="result-binary">{{ result.bin }}</span></div>
 											<div class="mdl-cell mdc-cell--4-col"><span id="result-octal">{{ result.oct }}</span></div>
 											<div class="mdl-cell mdc-cell--4-col"><span id="result-hexadecimal">{{ result.hex }}</span></div>

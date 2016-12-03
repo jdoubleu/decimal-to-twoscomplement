@@ -23,7 +23,7 @@
 	 * Length of the displayed binary numbers (aka byte length)
 	 * @type {number}
 	 */
-	const wordLength = 8;
+	let wordLength = 8;
 
 	/**
 	 * Checks whether the given number is valid
@@ -196,6 +196,7 @@
 		el: '#app',
 		data: {
 			value: 0,
+			blength: 8,
 			result: {
 				bin: 0,
 				oct: 0,
@@ -204,6 +205,7 @@
 		},
 		computed: {
 			result: function() {
+				wordLength = parseInt(this.blength);
 				return gettwcs(this.value);
 			}
 		}

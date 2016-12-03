@@ -12,24 +12,8 @@
 	line-height: .9em;
 }
 
-#convert-form {
-	.mdl-textfield {
-		width: 100%;
-		padding: 0;
-	}
-}
-
-#convert-input {
-	padding: 0;
-}
-
-#result-grid {
-
-	.result-headers {
-		font-weight: bold;
-	}
-
-	.mdl-grid {
+#app {
+	.mdl-grid.app-grid {
 		padding: 0;
 
 		.mdl-cell {
@@ -40,5 +24,22 @@
 				text-align: right;
 			}
 		}
+	}
+}
+
+#convert-form {
+	.mdl-textfield {
+		width: 100%;
+		padding: 0;
+	}
+
+	.mdl-textfield__input {
+		padding: 0;
+	}
+}
+
+#result-grid {
+	.result-headers {
+		font-weight: bold;
 	}
 }
