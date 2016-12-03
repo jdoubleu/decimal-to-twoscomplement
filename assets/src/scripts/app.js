@@ -201,12 +201,55 @@
 				bin: 0,
 				oct: 0,
 				hex: 0
-			}
+			},
+			error: ''
 		},
 		computed: {
 			result: function() {
 				wordLength = parseInt(this.blength);
-				return gettwcs(this.value);
+				return this.gettwcs(this.value);
+			}
+		},
+		methods: {
+			gettwcs: function(value) {
+				let tc,
+					res = {
+						bin: invalidValue,
+						oct: invalidValue,
+						hex: invalidValue
+					};
+
+				const _convertAndFill = (base) => {
+					let res = convertDecimalToBase(convertBaseToDecimal(tc, 2), base);
+
+					// Fill result with zeros from left to its maximal length according to word length
+					while(Math.ceil(wordLength / Math.log2(base)) > res.length)
+						res = '0' + res;
+
+					return res;
+				};
+
+				try {
+					tc = twosComplement(value);
+
+					if(checkNumber(value) && tc.length <= wordLength)
+						res = {
+							bin: tc,
+							oct: _convertAndFill(8),
+							hex: _convertAndFill(16)
+						};
+				} catch(e) {
+					if(e instanceof RangeError) {
+						res = {
+							bin: invalidValue,
+							oct: invalidValue,
+							hex: invalidValue
+						};
+						this.error = e.message;
+					}
+				}
+
+				return res;
 			}
 		}
 	});
