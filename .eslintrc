@@ -7,6 +7,9 @@
         }
     },
 	"parser": "babel-eslint",
+	"globals": {
+		"Vue": true
+	},
 	"env": {
         "browser": true
     },
