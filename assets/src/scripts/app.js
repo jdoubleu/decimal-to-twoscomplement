@@ -148,45 +148,6 @@
 		return res;
 	};
 
-	const gettwcs = (value) => {
-		let tc,
-			res = {
-				bin: invalidValue,
-				oct: invalidValue,
-				hex: invalidValue
-			};
-
-		const _convertAndFill = (base) => {
-			let res = convertDecimalToBase(convertBaseToDecimal(tc, 2), base);
-
-			// Fill result with zeros from left to its maximal length according to word length
-			while(Math.ceil(wordLength / Math.log2(base)) > res.length)
-				res = '0' + res;
-
-			return res;
-		};
-
-		try {
-			tc = twosComplement(value);
-
-			if(checkNumber(value) && tc.length <= wordLength)
-				res = {
-					bin: tc,
-					oct: _convertAndFill(8),
-					hex: _convertAndFill(16)
-				};
-		} catch(e) {
-			if(e instanceof RangeError)
-				(res = {
-					bin: invalidValue + invalidValue,
-					oct: invalidValue + invalidValue,
-					hex: invalidValue + invalidValue
-				}) && console.log(e.message);
-		}
-
-		return res;
-	};
-
 	/**
 	 * Calculator vue app
 	 * Implements the calculation logic and UI
