@@ -1,0 +1,80 @@
+/**
+ * Main SCSS file
+ *
+ * All general style rules will be defined in this file.
+ */
+/**!
+ * The following css is available at https://github.com/google/material-design-lite/blob/mdl-1.x/templates/article/styles.css.
+ * The 'demo' classes has been renamed to 'page'. There have also been some modifications in form of nesting of some rules
+ *
+ * Copyright 2015 Google Inc. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+.page-layout.is-small-screen .page-content {
+  padding: 40px 28px; }
+
+.page-layout .page-header .mdl-layout__header-row {
+  padding-left: 40px; }
+
+.page-layout .page-background {
+  width: 100%;
+  height: 40vh;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  background: #3f51b5;
+  /* Old browsers */
+  /* FF3.6-15 */
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #3f51b5 1%, #e91e63 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3f51b5', endColorstr='#e91e63',GradientType=1 );
+  /* IE6-9 fallback on horizontal gradient */ }
+
+.page {
+  margin-top: -35vh;
+  -ms-flex-negative: 0;
+      flex-shrink: 0; }
+  .page .page-container {
+    max-width: 1600px;
+    width: calc(100% - 16px);
+    margin: 0 auto; }
+    .page .page-container .page-content {
+      border-radius: 2px;
+      padding: 2em 56px;
+      margin-bottom: 80px; }
+
+.page-content code {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.06);
+  line-height: .9em; }
+
+#app .mdl-grid.app-grid {
+  padding: 0; }
+  #app .mdl-grid.app-grid .mdl-cell {
+    margin: 0; }
+    #app .mdl-grid.app-grid .mdl-cell, #app .mdl-grid.app-grid .mdl-cell span {
+      float: right;
+      text-align: right; }
+
+#convert-form .mdl-textfield {
+  width: 100%;
+  padding: 0; }
+
+#convert-form .mdl-textfield__input {
+  padding: 0; }
+
+#result-grid .result-headers {
+  font-weight: bold; }
+
+/*# sourceMappingURL=app.css.map */
