@@ -158,11 +158,6 @@
 		data: {
 			value: 0,
 			blength: 8,
-			result: {
-				bin: 0,
-				oct: 0,
-				hex: 0
-			},
 			error: ''
 		},
 		computed: {
