@@ -12,6 +12,8 @@ let babel = require("gulp-babel");
 let autoprefixer = require('gulp-autoprefixer');
 let sass = require('gulp-sass');
 
+sass.compiler = require('node-sass');
+
 // Constants
 const dirs = {
 	assets: {
