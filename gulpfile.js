@@ -32,77 +32,69 @@ const dirs = {
 // Tasks
 
 // # Compile tasks
-gulp.task('compile:javascript:es6', () => {
+function js() {
 	return gulp.src(dirs.assets.src.scripts + '/**/*.js')
 		.pipe(sourcemaps.init())
-		.pipe(babel({
-			presets: ['es2015']
-		}))
+		.pipe(babel())
 		.on('error', function(e) {
 			console.error(e);
 			this.emit('end');
 		})
 		.pipe(sourcemaps.write('./'))
 		.pipe(gulp.dest(dirs.assets.dist.scripts));
-});
+}
 
-gulp.task('compile:styles:scss', () => {
-    return gulp.src(dirs.assets.src.styles + '/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass()).on('error', sass.logError)
-        .pipe(autoprefixer({
-        	browsers: ['last 2 versions', 'IE 9']
-        }))
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest(dirs.assets.dist.styles));
-});
+function scss() {
+	return gulp.src(dirs.assets.src.styles + '/**/*.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass()).on('error', sass.logError)
+		.pipe(autoprefixer())
+		.pipe(sourcemaps.write('./'))
+		.pipe(gulp.dest(dirs.assets.dist.styles));
+}
 
-gulp.task('compile', ['compile:javascript:es6', 'compile:styles:scss']);
+exports.compile = gulp.parallel(js, scss);
 
 // # Build tasks
-gulp.task('build:javascript', ['compile:javascript:es6'], () => {
+function compressJs() {
 	let uglify = require('gulp-uglify');
     return gulp.src(dirs.assets.dist.scripts + "/**/*.js")
-        .pipe(uglify({
-			preserveComments: 'license'
-		}).on('error', function(e) {
-          console.error(e);
-          this.emit('end');
-        }))
+        .pipe(uglify())
         .pipe(gulp.dest(dirs.assets.dist.scripts));
-});
+}
+const buildJs = gulp.series(js, compressJs);
 
-gulp.task('build:styles', ['compile:styles:scss'], () => {
+function compressCSS() {
 	let uglify = require('gulp-uglifycss');
     return gulp.src(dirs.assets.dist.styles + '/**/*.css')
 		.pipe(uglify())
 		.pipe(gulp.dest(dirs.assets.dist.styles));
-});
+}
+const buildCSS = gulp.series(scss, compressCSS);
 
-gulp.task('build', ['build:javascript', 'build:styles']);
+exports.build = gulp.parallel(buildJs, buildCSS);
 
 // # Linting tasks
-
-gulp.task('lint:javascript:es6', () => {
+function lintJs() {
 	let eslint = require('gulp-eslint');
 	return gulp.src([dirs.assets.src.scripts + '/**/*.js'])
         .pipe(eslint())
         .pipe(eslint.format());
-});
+}
 
-gulp.task('lint', ["lint:javascript:es6"]);
+exports.lint = lintJs;
 
 // # Watcher tasks
-gulp.task('watch:compile', ['compile'], () => {
-	gulp.watch(dirs.assets.src.styles + '/**/*.scss', ['compile:styles:scss']);
-    gulp.watch(dirs.assets.src.scripts + '/**/*.js', ['compile:javascript:es6']);
-});
+function compileWatch() {
+	gulp.watch(dirs.assets.src.styles + '/**/*.scss', { ignoreInitial: false }, scss);
+    gulp.watch(dirs.assets.src.scripts + '/**/*.js', { ignoreInitial: false }, js);
+}
 
-gulp.task('watch:lint', ['lint'], () => {
-    gulp.watch(dirs.assets.src.scripts + '/**/*.js', ['lint:javascript:es6']);
-});
+function lintWatch() {
+	gulp.watch(dirs.assets.src.scripts + '/**/*.js', { ignoreInitial: false }, lintJs);
+}
 
-gulp.task('watch', ['watch:lint', 'watch:compile']);
+exports.watch = gulp.parallel(compileWatch, lintWatch);
 
 // # Default tasks
-gulp.task('default', ['watch']);
+exports.default = exports.watch
